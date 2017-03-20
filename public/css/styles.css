@@ -1,0 +1,43 @@
+body {
+  width: 100vw;
+  max-width: 100vw;
+}
+#tableau {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  align-content: stretch;
+}
+#tableau .rangee {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: space-around;
+  align-content: stretch;
+}
+#tableau .rangee .case {
+  height: 100px;
+  line-height: 90px;
+  padding: 5px;
+  overflow: hidden;
+}
+#tableau .rangee .case--nom,
+#tableau .rangee .case--prenom,
+#tableau .rangee .case--telephone {
+  flex-basis: 15%;
+}
+#tableau .rangee .case--id {
+  flex-basis: 45%;
+}
+#tableau .rangee .case--vide,
+#tableau .rangee .case--ajouter,
+#tableau .rangee .case--modifier,
+#tableau .rangee .case--supprimer {
+  flex-basis: 5%;
+}
