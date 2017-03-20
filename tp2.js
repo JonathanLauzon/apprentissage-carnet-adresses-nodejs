@@ -18,6 +18,15 @@ MongoClient.connect('mongodb://127.0.0.1:27017/carnet_tp2', (err, database) => {
 	db = database
 	app.listen(8081, () => {
 		console.log('connexion à la BD et on écoute sur le port 8081');
-		console.log(db);
 	})
+})
+
+// Routage de l'adresse '/' pour l'affichage de la page html du template contenant les informations de la base de données
+app.get('/',  (req, res) => {
+  console.log('la route route get / = ' + req.url)
+  var cursor = db.collection('adresse').find().toArray(function(err, resultat){
+    if (err) return console.log(err);
+    // Appel de la page ejs et distribution des informations de la base de données à celle-ci
+    res.render('index.ejs', {liste: resultat});
+  })
 })
