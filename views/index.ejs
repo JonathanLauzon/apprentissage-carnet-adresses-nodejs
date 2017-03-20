@@ -4,28 +4,32 @@
 		<title>TP2</title>
 		<meta charset="utf-8"/>
 		<meta name="author" content="Jonathan Lauzon" />
+		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
+		<link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 	<body>
+		<h1>TP2 – Node.js et mongodb</h1>
 		<div id="tableau">
-			<div class="rangee">
-				<p class="case case--head case--nom case--nom--nouveau">Nom</p>
-				<p class="case case--head case--prenom case--prenom--nouveau">Prénom</p>
-				<p class="case case--head case--telephone case--telephone--nouveau">Téléphone</p>
-				<p class="case case--head case--id">_id</p>
-				<p class="case case--head case--vide"></p>
-				<p class="case case--head case--ajouter">Ajouter</p>
+			<div class="rangee rangee--head">
+				<p class="case rangee--head__case case--nom case--nom--nouveau">Nom</p>
+				<p class="case rangee--head__case case--prenom case--prenom--nouveau">Prénom</p>
+				<p class="case rangee--head__case case--telephone case--telephone--nouveau">Téléphone</p>
+				<p class="case rangee--head__case case--id">_id</p>
+				<p class="case rangee--head__case case--vide"></p>
+				<p class="case rangee--head__case case--ajouter"><i class="fa fa-plus-circle" aria-hidden="true"></i></p>
 			</div>
 			<% if (liste) { %>
 				<div class="rangee">
 				<% for (var i = 0; i < liste.length; i++) { %>
-					<p class="case case--nom"><%= liste[i].nom %></p>
-					<p class="case case--prenom"><%= liste[i].prenom %></p>
-					<p class="case case--telephone"><%= liste[i].telephone %></p>
+					<p class="case case--nom" contenteditable="true"><%= liste[i].nom %></p>
+					<p class="case case--prenom" contenteditable="true"><%= liste[i].prenom %></p>
+					<p class="case case--telephone" contenteditable="true"><%= liste[i].telephone %></p>
 					<p class="case case--id"><%= liste[i]._id %></p>
-					<p class="case case--modifier" data-id="<%= liste[i]._id %>">Modifier</p>
-					<p class="case case--supprimer" data-id="<%= liste[i]._id %>">Supprimer</p>
+					<p class="case case--modifier" data-id="<%= liste[i]._id %>"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+</p>
+					<p class="case case--supprimer" data-id="<%= liste[i]._id %>"><i class="fa fa-trash" aria-hidden="true"></i></p>
 				<% } %>
 				</div>
 			<% } %>

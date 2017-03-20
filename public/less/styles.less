@@ -1,6 +1,16 @@
+@couleur-vert: #0a3;
+@couleur-rouge: #f00;
+
 body {
 	width: 100vw;
 	max-width: 100vw;
+}
+
+h1 {
+	font-size: 32px;
+	font-weight: bold;
+	margin-top: 15px;
+	margin-bottom: 10px;
 }
 
 #tableau {
@@ -22,10 +32,22 @@ body {
 		justify-content: space-around;
 		align-content: stretch;
 		.case {
-			height: 100px;
-			line-height: 90px;
+			height: 50px;
+			line-height: 40px;
 			padding: 5px;
 			overflow: hidden;
+		}
+
+		&:nth-child(odd):not(.rangee--head) {
+			.case--nom, .case--prenom, .case--telephone, .case--id {
+				background-color: #f0f0f0;
+			}
+		}
+
+		&:nth-child(even):not(.rangee--head) {
+			.case--nom, .case--prenom, .case--telephone, .case--id {
+				background-color: #e6e6e6;
+			}
 		}
 
 		.case--nom,
@@ -38,11 +60,53 @@ body {
 			flex-basis: 45%;
 		}
 
-		.case--vide,
+		.case--vide {
+			flex-basis: 5%;
+		}
+
 		.case--ajouter,
 		.case--modifier,
 		.case--supprimer {
 			flex-basis: 5%;
+			text-align: center;
+			color: #fff;
+			cursor: pointer;
 		}
+
+		.case--ajouter {
+			font-size: 40px;
+			color: @couleur-vert;
+			&:hover, &:active {
+				color: lighten(@couleur-vert, -5%);
+			}
+		}
+
+		.case--modifier {
+			background-color: @couleur-vert;
+			&:hover, &:active {
+				background-color: lighten(@couleur-vert, -5%);
+			}
+		}
+
+		.case--supprimer {
+			background-color: @couleur-rouge;
+			&:hover, &:active {
+				background-color: lighten(@couleur-rouge, -5%);
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 960px) {
+	#tableau {
+		width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	#tableau {
+		width: 70%;
 	}
 }
