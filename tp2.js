@@ -7,8 +7,10 @@ const app = express();
 // Déclaration du moteur de gabarits ejs pour l'application
 app.set('view engine', 'ejs');
 // Définition des options des modules
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(express.static('public'));
+
 // Création de la base de données du serveur
 var db;
 // Connexion à la base de données MongoDB installée localement, collection carnet_adresses
@@ -29,4 +31,72 @@ app.get('/',  (req, res) => {
     // Appel de la page ejs et distribution des informations de la base de données à celle-ci
     res.render('index.ejs', {liste: resultat});
   })
+})
+
+// Routage de l'adresse '/ajouter' appelée depuis le bouton d'ajout de la page HTML
+app.post('/ajouter', function (req, res) {
+	// Création d'un document à ajouter à la base de données et récupération des informations de la rangée
+	var nouvelleAdresse = {
+		nom:req.body.nom,
+		prenom:req.body.prenom,
+		telephone:req.body.telephone
+	};
+	console.log('Ajout');
+	// Envoi du document à la base de données
+	db.collection('adresse').save(nouvelleAdresse, (err, result) => {
+		if (err) return console.log(err);
+		console.log('Ajouter dans la base de données');
+		/*console.log(result);*/
+
+		console.log(req.body.nom);
+		res.json({
+			type: "ajout",
+			infos: {
+				nom: req.body.nom,
+				prenom: req.body.prenom,
+				telephone: req.body.telephone,
+				_id: ObjectId(result._id)
+			}
+		});
+	});
+})
+
+// Routage de l'adresse 'modifier' appelée depuis le bouton de modification adjacent à la rangée correspondante du tableau
+app.post('/modifier', function (req, res) {
+	// Préparation d'un document à insérer dans la base de données pour remplacer un document existant
+	var adresseModifiee = {
+		// Déclaration, en premier lieu, du ID
+		_id: ObjectId(req.body._id),
+		nom:req.body.modification.nom,
+		prenom:req.body.modification.prenom,
+		telephone:req.body.modification.telephone
+	};
+	console.log('Modification');
+	// Envoi des informations à un document correspondant à un id spécifique dans la collection
+	db.collection('adresse').save(adresseModifiee, (err, result) => {
+		if (err) return console.log(err);
+		console.log('Modifier l\'id '+req.body._id+' de la base de données');
+		res.json({
+			type: "modification",
+			infos: {
+				_id: req.body._id
+			}
+		});
+	})
+})
+
+// Routage de l'adresse '/supprimer' appelée depuis le bouton de suppression adjacent à la rangée correspondante du tableau
+app.post('/supprimer', function (req, res) {
+	console.log('Suppression');
+	// Suppression du document correspondant à l'id fourni de la collection
+	db.collection('adresse').remove({"_id": ObjectId(req.body._id)}, (err, result) => {
+		if (err) return console.log(err);
+		console.log('Supprimer l\'id '+req.body._id+' de la base de données');
+		res.json({
+			type: "suppression",
+			infos: {
+				_id: req.body._id
+			}
+		});
+	});
 })
