@@ -12,13 +12,13 @@
 	<body>
 		<h1>TP2 – Node.js et mongodb</h1>
 		<div id="tableau">
-			<div class="rangee rangee--ajout">
-				<p class="case rangee--ajout__case case--nom case--nom--nouveau" contenteditable="true">Nom</p>
-				<p class="case rangee--ajout__case case--prenom case--prenom--nouveau" contenteditable="true">Prénom</p>
-				<p class="case rangee--ajout__case case--telephone case--telephone--nouveau" contenteditable="true">Téléphone</p>
-				<p class="case rangee--ajout__case case--id">_id</p>
-				<p class="case rangee--ajout__case case--vide"></p>
-				<p class="case rangee--ajout__case case--ajouter"><i class="fa fa-plus-circle" aria-hidden="true"></i></p>
+			<div class="rangee rangee--head">
+				<p class="case rangee--head__case case--nom trier" data-tri="nom">Nom</p>
+				<p class="case rangee--head__case case--prenom trier" data-tri="prenom">Prénom</p>
+				<p class="case rangee--head__case case--telephone trier" data-tri="telephone">Téléphone</p>
+				<p class="case rangee--head__case case--id trier" data-tri="id">Index</p>
+				<p class="case rangee--head__case case--vide"></p>
+				<p class="case rangee--head__case case--vide"></p>
 			</div>
 			<% if (liste) { %>
 				<% for (var i = 0; i < liste.length; i++) { %>
@@ -32,6 +32,14 @@
 					</div>
 				<% } %>
 			<% } %>
+			<div class="rangee rangee--ajout">
+				<p class="case rangee--ajout__case case--nom case--nom--nouveau" contenteditable="true">Nom</p>
+				<p class="case rangee--ajout__case case--prenom case--prenom--nouveau" contenteditable="true">Prénom</p>
+				<p class="case rangee--ajout__case case--telephone case--telephone--nouveau" contenteditable="true">Téléphone</p>
+				<p class="case rangee--ajout__case case--id">_id</p>
+				<p class="case rangee--ajout__case case--ajouter"><i class="fa fa-plus-circle" aria-hidden="true"></i></p>
+				<p class="case rangee--ajout__case case--vide"></p>
+			</div>
 		</div>
 		<div class="rangee cachee">
 			<p class="case case--nom" contenteditable="true"></p>

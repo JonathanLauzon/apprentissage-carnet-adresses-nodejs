@@ -1,8 +1,18 @@
 // Déclaration des variables d'objets du DOM
+var lesTrieurs = document.querySelectorAll('.trier');
 var lesBtnModifier = document.querySelectorAll('.case--modifier');
 var lesBtnSupprimer = document.querySelectorAll('.case--supprimer');
 
 // Déclaration des écouteurs d'événements
+for (var i = 0; i < lesTrieurs.length; i++) {
+	lesTrieurs[i].addEventListener('click', function(element) {
+		if(lesTrieurs[i].getAttribute('data-tri')) {
+			console.log('Il y a un tri : '+lesTrieurs[i].getAttribute('data-tri'));
+			gererTri(lesTrieurs[i].getAttribute('data-tri'));
+		}
+	});
+}
+
 document.querySelector('.case--ajouter').addEventListener('click', function(element) {
 	var ligne = element.target.parentNode.children;
 	ajouterLigne(ligne);

@@ -5,6 +5,8 @@
 body {
   width: 100vw;
   max-width: 100vw;
+  font-family: arial;
+  font-size: 12px;
 }
 h1 {
   font-size: 32px;
@@ -37,20 +39,42 @@ h1 {
   padding: 5px;
   overflow: hidden;
 }
+#tableau .rangee.rangee--head .case--nom,
+#tableau .rangee.rangee--head .case--prenom,
+#tableau .rangee.rangee--head .case--telephone,
+#tableau .rangee.rangee--head .case--id,
+#tableau .rangee.rangee--head .case--vide {
+  background-color: #333;
+  color: #fff;
+}
+#tableau .rangee.rangee--head .case--nom:not(.case--vide):hover,
+#tableau .rangee.rangee--head .case--prenom:not(.case--vide):hover,
+#tableau .rangee.rangee--head .case--telephone:not(.case--vide):hover,
+#tableau .rangee.rangee--head .case--id:not(.case--vide):hover,
+#tableau .rangee.rangee--head .case--vide:not(.case--vide):hover {
+  cursor: pointer;
+  background-color: #111;
+}
+#tableau .rangee.rangee--head .case--nom:not(.case--vide):hover::after,
+#tableau .rangee.rangee--head .case--prenom:not(.case--vide):hover::after,
+#tableau .rangee.rangee--head .case--telephone:not(.case--vide):hover::after,
+#tableau .rangee.rangee--head .case--id:not(.case--vide):hover::after,
+#tableau .rangee.rangee--head .case--vide:not(.case--vide):hover::after {
+  content: ' ▼';
+}
 #tableau .rangee.rangee--ajout .case--nom,
 #tableau .rangee.rangee--ajout .case--prenom,
 #tableau .rangee.rangee--ajout .case--telephone,
 #tableau .rangee.rangee--ajout .case--id {
-  background-color: #333;
-  color: #fff;
+  background-color: #ccc;
 }
 #tableau .rangee.rangee--ajout .case--id {
   color: #888888;
 }
-#tableau .rangee:nth-child(odd):not(.rangee--ajout) {
+#tableau .rangee:nth-child(odd):not(.rangee--ajout):not(.rangee-head) {
   background-color: #f0f0f0;
 }
-#tableau .rangee:nth-child(even):not(.rangee--ajout) {
+#tableau .rangee:nth-child(even):not(.rangee--ajout):not(.rangee-head) {
   background-color: #e6e6e6;
 }
 #tableau .rangee .case--nom,
@@ -87,6 +111,7 @@ h1 {
   color: #00912b;
 }
 #tableau .rangee .case--modifier {
+  font-size: 16px;
   background-color: #00aa33;
 }
 #tableau .rangee .case--modifier:hover,
@@ -94,6 +119,7 @@ h1 {
   background-color: #00912b;
 }
 #tableau .rangee .case--supprimer {
+  font-size: 16px;
   background-color: #ff0000;
 }
 #tableau .rangee .case--supprimer:hover,
@@ -101,6 +127,9 @@ h1 {
   background-color: #e60000;
 }
 @media screen and (min-width: 960px) {
+  body {
+    font-size: 16px;
+  }
   #tableau {
     width: 80%;
     margin-left: auto;

@@ -9,6 +9,8 @@
 body {
 	width: 100vw;
 	max-width: 100vw;
+	font-family: arial;
+	font-size: 12px;
 }
 
 h1 {
@@ -43,10 +45,23 @@ h1 {
 			overflow: hidden;
 		}
 
-		&.rangee--ajout {
-			.case--nom, .case--prenom, .case--telephone, .case--id {
+		&.rangee--head {
+			.case--nom, .case--prenom, .case--telephone, .case--id, .case--vide {
 				background-color: #333;
 				color: #fff;
+				&:not(.case--vide):hover {
+					cursor: pointer;
+					background-color: #111;
+					&::after {
+						content: ' ▼';
+					}
+				}
+			}
+		}
+
+		&.rangee--ajout {
+			.case--nom, .case--prenom, .case--telephone, .case--id {
+				background-color: #ccc;
 			}
 
 			.case--id {
@@ -54,11 +69,11 @@ h1 {
 			}
 		}
 
-		&:nth-child(odd):not(.rangee--ajout) {
+		&:nth-child(odd):not(.rangee--ajout):not(.rangee-head) {
 			background-color: #f0f0f0;
 		}
 
-		&:nth-child(even):not(.rangee--ajout) {
+		&:nth-child(even):not(.rangee--ajout):not(.rangee-head) {
 			background-color: #e6e6e6;
 		}
 
@@ -98,6 +113,7 @@ h1 {
 		}
 
 		.case--modifier {
+			font-size: 16px;
 			background-color: @couleur-vert;
 			&:hover, &:active {
 				background-color: lighten(@couleur-vert, -5%);
@@ -105,6 +121,7 @@ h1 {
 		}
 
 		.case--supprimer {
+			font-size: 16px;
 			background-color: @couleur-rouge;
 			&:hover, &:active {
 				background-color: lighten(@couleur-rouge, -5%);
@@ -114,6 +131,9 @@ h1 {
 }
 
 @media screen and (min-width: 960px) {
+	body {
+		font-size: 16px;
+	}
 	#tableau {
 		width: 80%;
 		margin-left: auto;
