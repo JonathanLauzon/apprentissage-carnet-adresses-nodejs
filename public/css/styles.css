@@ -25,22 +25,43 @@ a:focus {
 }
 #tableau {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  justify-content: flex-start;
-  align-content: stretch;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
 }
 #tableau .rangee {
   width: 100%;
   max-width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  justify-content: space-around;
-  align-content: stretch;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
 }
 #tableau .rangee .case {
   height: 50px;
@@ -110,19 +131,23 @@ a:focus {
 #tableau .rangee .case--nom,
 #tableau .rangee .case--prenom,
 #tableau .rangee .case--telephone {
-  flex-basis: 15%;
+  -ms-flex-preferred-size: 15%;
+      flex-basis: 15%;
 }
 #tableau .rangee .case--id {
-  flex-basis: 45%;
+  -ms-flex-preferred-size: 45%;
+      flex-basis: 45%;
   color: #888888;
 }
 #tableau .rangee .case--vide {
-  flex-basis: 5%;
+  -ms-flex-preferred-size: 5%;
+      flex-basis: 5%;
 }
 #tableau .rangee .case--ajouter,
 #tableau .rangee .case--modifier,
 #tableau .rangee .case--supprimer {
-  flex-basis: 5%;
+  -ms-flex-preferred-size: 5%;
+      flex-basis: 5%;
   text-align: center;
   color: #fff;
   cursor: pointer;
