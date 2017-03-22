@@ -1,40 +1,47 @@
-/***************************************
-DÉCLARATION DE VARIABLES D'OBJETS DU DOM
-***************************************/
+/*********************************
+DÉCLARATION DES VARIABLES GLOBALES
+*********************************/
+var lesBtnModifier;
+var lesBtnSupprimer
 
-var lesBtnModifier = document.querySelectorAll('.case--modifier');
-var lesBtnSupprimer = document.querySelectorAll('.case--supprimer');
-
-
-
-/*********************
-ÉCOUTEURS D'ÉVÉNEMENTS
-*********************/
-
-document.querySelector('.case--ajouter').addEventListener('click', function(element) {
-	var ligne = element.target.parentNode.children;
-	ajouterLigne(ligne);
-});
-
-for (var i = 0; i < lesBtnModifier.length; i++) {
-	lesBtnModifier[i].addEventListener('click', function(element) {
-		var ligne = element.target.parentNode.children;
-		modifierLigne(ligne);
-	});
-}
-
-for (var i = 0; i < lesBtnSupprimer.length; i++) {
-	lesBtnSupprimer[i].addEventListener('click', function(element) {
-		var ligne = element.target.parentNode.children;
-		supprimerLigne(ligne);
-	});
-}
-
-
+/***********************
+INITIALISATION DU SCRIPT
+***********************/
+initialiser();
 
 /********
 FONCTIONS
 ********/
+
+
+// Fonction d'initialisation (déclaration des objets du DOM et écouteurs d'événement)
+
+function initialiser() {
+	/*DÉCLARATION DE VARIABLES D'OBJETS DU DOM*/
+	lesBtnModifier = document.querySelectorAll('.case--modifier');
+	lesBtnSupprimer = document.querySelectorAll('.case--supprimer');
+
+	/*ÉCOUTEURS D'ÉVÉNEMENTS*/
+	document.querySelector('.case--ajouter').addEventListener('click', function(element) {
+		var ligne = element.target.parentNode.children;
+		ajouterLigne(ligne);
+	});
+
+	for (var i = 0; i < lesBtnModifier.length; i++) {
+		lesBtnModifier[i].addEventListener('click', function(element) {
+			var ligne = element.target.parentNode.children;
+			modifierLigne(ligne);
+		});
+	}
+
+	for (var i = 0; i < lesBtnSupprimer.length; i++) {
+		lesBtnSupprimer[i].addEventListener('click', function(element) {
+			var ligne = element.target.parentNode.children;
+			supprimerLigne(ligne);
+		});
+	}
+}
+
 
 // Fonctions de requêtes AJAX
 
@@ -121,7 +128,9 @@ function traiterAjout(leNom, lePrenom, leTelephone, leId) {
 	nouvelleRangee.querySelector('.case--telephone').innerHTML = leTelephone;
 	nouvelleRangee.querySelector('.case--id').innerHTML = leId;
 	var leTableau = document.getElementById('tableau');
-	leTableau.insertBefore(nouvelleRangee, leTableau.childNodes[2]);
+	initialiser();
+	leTableau.insertBefore(nouvelleRangee, leTableau.children[1]);
+	initialiser();
 }
 
 function traiterModification(leId) {
@@ -145,10 +154,8 @@ function traiterSuppression(leId) {
 
 function chercherRangee(leId) {
 	var lesIds = document.querySelectorAll('.case--id');
-	console.log(lesIds.length);
 	for (var i = 0; i < lesIds.length; i++) {
 		if(lesIds[i].innerHTML == leId) {
-			console.log('Élément repéré à l\'id '+i);
 			return lesIds[i].parentNode;
 		}
 	}
