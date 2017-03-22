@@ -5,18 +5,19 @@
 		<meta charset="utf-8"/>
 		<meta name="author" content="Jonathan Lauzon" />
 		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<link rel="stylesheet" type="text/css" href="css/reset.css">
-		<link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link rel="stylesheet" type="text/css" href="/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="/css/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/styles.css">
 	</head>
 	<body>
 		<h1>TP2 – Node.js et mongodb</h1>
 		<div id="tableau">
+			<% if(!tri) {var tri = 0} %>
 			<div class="rangee rangee--head">
-				<p class="case rangee--head__case case--nom trier" data-tri="nom">Nom</p>
-				<p class="case rangee--head__case case--prenom trier" data-tri="prenom">Prénom</p>
-				<p class="case rangee--head__case case--telephone trier" data-tri="telephone">Téléphone</p>
-				<p class="case rangee--head__case case--id trier" data-tri="id">Index</p>
+				<a href="/trier/nom/<% if(tri == 'nom') { %>desc<% } else { %>asc<% } %>" class="case rangee--head__case case--nom <% if(tri == 'nom') { %> trier<% } %><% if(tri == 'nom-inverse') { %> trier-inverse<% } %>"><p>Nom</p></a>
+				<a href="/trier/prenom/<% if(tri == 'prenom') { %>desc<% } else { %>asc<% } %>" class="case rangee--head__case case--prenom <% if(tri == 'prenom') { %> trier<% } %><% if(tri == 'prenom-inverse') { %> trier-inverse<% } %>"><p>Prénom</p></a>
+				<a href="/trier/telephone/<% if(tri == 'telephone') { %>desc<% } else { %>asc<% } %>" class="case rangee--head__case case--telephone <% if(tri == 'telephone') { %> trier<% } %><% if(tri == 'telephone-inverse') { %> trier-inverse<% } %>"><p>Téléphone</p></a>
+				<a href="/trier/_id/<% if(tri == '_id') { %>desc<% } else { %>asc<% } %>" class="case rangee--head__case case--id <% if(tri == '_id') { %> trier<% } %><% if(tri == '_id-inverse') { %> trier-inverse<% } %>"><p>Index</p></a>
 				<p class="case rangee--head__case case--vide"></p>
 				<p class="case rangee--head__case case--vide"></p>
 			</div>
@@ -49,6 +50,6 @@
 			<p class="case case--modifier"><i class="fa fa-floppy-o" aria-hidden="true"></i></p>
 			<p class="case case--supprimer"><i class="fa fa-trash" aria-hidden="true"></i></p>
 		</div>
-		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript" src="/js/script.js"></script>
 	</body>
 </html>

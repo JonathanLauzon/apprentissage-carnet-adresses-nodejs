@@ -1,17 +1,20 @@
 // Déclaration des variables d'objets du DOM
-var lesTrieurs = document.querySelectorAll('.trier');
+/*var lesTrieurs = document.querySelectorAll('.trier');*/
 var lesBtnModifier = document.querySelectorAll('.case--modifier');
 var lesBtnSupprimer = document.querySelectorAll('.case--supprimer');
 
+
 // Déclaration des écouteurs d'événements
-for (var i = 0; i < lesTrieurs.length; i++) {
+/*for (var i = 0; i < lesTrieurs.length; i++) {
+	console.log(lesTrieurs[i].getAttribute('data-tri'));
 	lesTrieurs[i].addEventListener('click', function(element) {
-		if(lesTrieurs[i].getAttribute('data-tri')) {
-			console.log('Il y a un tri : '+lesTrieurs[i].getAttribute('data-tri'));
-			gererTri(lesTrieurs[i].getAttribute('data-tri'));
+		if(typeof element.target.getAttribute('data-tri') !== "undefined" && typeof element.target.getAttribute('data-direction') !== "undefined") {
+			var direction = element.target.getAttribute('data-direction');
+			console.log('Il y a un tri : '+element.target.getAttribute('data-tri')+' et une direction : '+ direction);
+			gererTri(element.target.getAttribute('data-tri'), direction);
 		}
 	});
-}
+}*/
 
 document.querySelector('.case--ajouter').addEventListener('click', function(element) {
 	var ligne = element.target.parentNode.children;
@@ -32,6 +35,21 @@ for (var i = 0; i < lesBtnSupprimer.length; i++) {
 	});
 }
 
+
+/********
+FONCTIONS
+********/
+
+// Requêtes AJAX
+
+/*function gererTri(leChamp, direction) {
+	xhr = new XMLHttpRequest();
+	xhr.open('GET', "trier/"+leChamp+"/"+direction, true);
+	data = {};
+	sData = JSON.stringify(data);
+	xhr.setRequestHeader('Content-type', 'application/json');
+	xhr.send(sData);
+}*/
 
 function ajouterLigne(laLigne) {
 	xhr = new XMLHttpRequest();
@@ -76,6 +94,9 @@ function supprimerLigne(laLigne) {
 	xhr.addEventListener("readystatechange", traiterRequete, false);
 }
 
+
+// Réception de requêtes AJAX
+
 function traiterRequete(e) {
 	console.log("xhr.readyState = " + xhr.readyState);
 	console.log("xhr.status = " + xhr.status);
@@ -99,6 +120,8 @@ function traiterRequete(e) {
 		}
 	}
 }
+
+// Application des requêtes AJAX envoyées par la fonction de routage traiterRequete
 
 function traiterAjout(leNom, lePrenom, leTelephone, leId) {
 	console.log(leNom, lePrenom, leTelephone, leId);
@@ -129,6 +152,8 @@ function traiterSuppression(leId) {
 	if(chercherRangee(leId)) chercherRangee(leId).remove();
 }
 
+// Fonctions d'assistance
+
 function chercherRangee(leId) {
 	var lesIds = document.querySelectorAll('.case--id');
 	console.log(lesIds.length);
@@ -140,3 +165,4 @@ function chercherRangee(leId) {
 	}
 	return false;
 }
+

@@ -25,13 +25,40 @@ MongoClient.connect('mongodb://127.0.0.1:27017/carnet_tp2', (err, database) => {
 
 // Routage de l'adresse '/' pour l'affichage de la page html du template contenant les informations de la base de données
 app.get('/',  (req, res) => {
-  console.log('la route route get / = ' + req.url)
+  console.log('la route get / = ' + req.url);
   var cursor = db.collection('adresse').find().toArray(function(err, resultat){
     if (err) return console.log(err);
     // Appel de la page ejs et distribution des informations de la base de données à celle-ci
     res.render('index.ejs', {liste: resultat});
-  })
-})
+  });
+});
+
+app.get('/trier/:champ/:direction', (req, res) => {
+	console.log('la route get /trier/ = '+ req.url);
+	console.log('Paramètre 1 :'+req.params.champ);
+	console.log('Paramètre 2 :'+req.params.direction);
+	var champ = req.params.champ;
+	var direction = 1;
+
+	if(req.params.direction == 'desc') direction = -1;
+
+	var ordre_de_tri = {};
+	ordre_de_tri[champ] = direction;
+
+	var cursor = db.collection('adresse').find({}, {sort: ordre_de_tri}).toArray(function(err, resultatTri) {
+		if(err) {
+			res.redirect('/');
+			return console.log(err);
+		}
+		console.log(resultatTri);
+		// Retourner une variable chargée avec en paramètre le facteur de tri qui a été employé.
+		// Cela servira à identifier s'il faut maintenant inverser l'ordre de tri (géré sur le template)
+		var tri = champ;
+		if(direction == -1) tri = tri+'-inverse';
+		
+		res.render('index.ejs', {liste: resultatTri, tri: tri});
+	});
+});
 
 // Routage de l'adresse '/ajouter' appelée depuis le bouton d'ajout de la page HTML
 app.post('/ajouter', function (req, res) {
@@ -59,7 +86,7 @@ app.post('/ajouter', function (req, res) {
 			}
 		});
 	});
-})
+});
 
 // Routage de l'adresse 'modifier' appelée depuis le bouton de modification adjacent à la rangée correspondante du tableau
 app.post('/modifier', function (req, res) {
@@ -83,7 +110,7 @@ app.post('/modifier', function (req, res) {
 			}
 		});
 	})
-})
+});
 
 // Routage de l'adresse '/supprimer' appelée depuis le bouton de suppression adjacent à la rangée correspondante du tableau
 app.post('/supprimer', function (req, res) {
@@ -99,4 +126,4 @@ app.post('/supprimer', function (req, res) {
 			}
 		});
 	});
-})
+});

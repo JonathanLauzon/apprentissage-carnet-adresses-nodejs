@@ -23,6 +23,9 @@ h1 {
   justify-content: flex-start;
   align-content: stretch;
 }
+#tableau a {
+  text-decoration: none;
+}
 #tableau .rangee {
   width: 100%;
   max-width: 100%;
@@ -47,6 +50,20 @@ h1 {
   background-color: #333;
   color: #fff;
 }
+#tableau .rangee.rangee--head .case--nom.trier p::after,
+#tableau .rangee.rangee--head .case--prenom.trier p::after,
+#tableau .rangee.rangee--head .case--telephone.trier p::after,
+#tableau .rangee.rangee--head .case--id.trier p::after,
+#tableau .rangee.rangee--head .case--vide.trier p::after {
+  content: ' ▼';
+}
+#tableau .rangee.rangee--head .case--nom.trier-inverse p::after,
+#tableau .rangee.rangee--head .case--prenom.trier-inverse p::after,
+#tableau .rangee.rangee--head .case--telephone.trier-inverse p::after,
+#tableau .rangee.rangee--head .case--id.trier-inverse p::after,
+#tableau .rangee.rangee--head .case--vide.trier-inverse p::after {
+  content: ' ▲';
+}
 #tableau .rangee.rangee--head .case--nom:not(.case--vide):hover,
 #tableau .rangee.rangee--head .case--prenom:not(.case--vide):hover,
 #tableau .rangee.rangee--head .case--telephone:not(.case--vide):hover,
@@ -55,12 +72,19 @@ h1 {
   cursor: pointer;
   background-color: #111;
 }
-#tableau .rangee.rangee--head .case--nom:not(.case--vide):hover::after,
-#tableau .rangee.rangee--head .case--prenom:not(.case--vide):hover::after,
-#tableau .rangee.rangee--head .case--telephone:not(.case--vide):hover::after,
-#tableau .rangee.rangee--head .case--id:not(.case--vide):hover::after,
-#tableau .rangee.rangee--head .case--vide:not(.case--vide):hover::after {
+#tableau .rangee.rangee--head .case--nom:not(.case--vide):hover:not(.trier) > p::after,
+#tableau .rangee.rangee--head .case--prenom:not(.case--vide):hover:not(.trier) > p::after,
+#tableau .rangee.rangee--head .case--telephone:not(.case--vide):hover:not(.trier) > p::after,
+#tableau .rangee.rangee--head .case--id:not(.case--vide):hover:not(.trier) > p::after,
+#tableau .rangee.rangee--head .case--vide:not(.case--vide):hover:not(.trier) > p::after {
   content: ' ▼';
+}
+#tableau .rangee.rangee--head .case--nom:not(.case--vide):hover.trier > p::after,
+#tableau .rangee.rangee--head .case--prenom:not(.case--vide):hover.trier > p::after,
+#tableau .rangee.rangee--head .case--telephone:not(.case--vide):hover.trier > p::after,
+#tableau .rangee.rangee--head .case--id:not(.case--vide):hover.trier > p::after,
+#tableau .rangee.rangee--head .case--vide:not(.case--vide):hover.trier > p::after {
+  content: ' ▲';
 }
 #tableau .rangee.rangee--ajout .case--nom,
 #tableau .rangee.rangee--ajout .case--prenom,
