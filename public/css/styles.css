@@ -1,7 +1,3 @@
-.rangee.cachee {
-  display: none;
-  overflow: hidden;
-}
 body {
   width: 100vw;
   max-width: 100vw;
@@ -22,6 +18,10 @@ a:hover,
 a:active,
 a:focus {
   color: #333;
+}
+.rangee.cachee {
+  display: none;
+  overflow: hidden;
 }
 #tableau {
   width: 100%;

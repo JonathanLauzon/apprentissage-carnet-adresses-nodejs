@@ -1,11 +1,9 @@
+// Déclaration des variables
 @couleur-vert: #0a3;
 @couleur-rouge: #f00;
 
-.rangee.cachee {
-	display: none;
-	overflow: hidden;
-}
 
+// Définition des styles pour un affichage mobile-first
 body {
 	width: 100vw;
 	max-width: 100vw;
@@ -26,6 +24,11 @@ a {
 	&:hover, &:active, &:focus {
 		color: #333;
 	}
+}
+
+.rangee.cachee {
+	display: none;
+	overflow: hidden;
 }
 
 #tableau {
@@ -147,6 +150,8 @@ a {
 	}
 }
 
+
+// Définition des styles mobiles
 @media screen and (min-width: 960px) {
 	body {
 		font-size: 16px;

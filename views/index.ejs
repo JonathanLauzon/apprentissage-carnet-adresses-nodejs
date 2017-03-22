@@ -10,9 +10,13 @@
 		<link rel="stylesheet" type="text/css" href="/css/styles.css">
 	</head>
 	<body>
+		<!-- Titre servant également de lien de retour vers le chemin racine -->
 		<h1><a href="/">TP2 – Node.js et mongodb</a></h1>
+		<!-- Tableau qui contiendra les champs -->
 		<div id="tableau">
+			<!-- Limiter les erreurs en créant une variable de tri et en lui assignant une valeur nulle si Node.js ne l'envoie pas -->
 			<% if(!tri) {var tri = 0} %>
+			<!-- Rangée de tête du tableau, utilisée pour l'interactivité du tri -->
 			<div class="rangee rangee--head">
 				<a href="/trier/nom/<% if(tri == 'nom') { %>desc<% } else { %>asc<% } %>" class="case rangee--head__case case--nom <% if(tri == 'nom') { %> trier<% } %><% if(tri == 'nom-inverse') { %> trier-inverse<% } %>"><p>Nom</p></a>
 				<a href="/trier/prenom/<% if(tri == 'prenom') { %>desc<% } else { %>asc<% } %>" class="case rangee--head__case case--prenom <% if(tri == 'prenom') { %> trier<% } %><% if(tri == 'prenom-inverse') { %> trier-inverse<% } %>"><p>Prénom</p></a>
@@ -21,7 +25,9 @@
 				<p class="case rangee--head__case case--vide"></p>
 				<p class="case rangee--head__case case--vide"></p>
 			</div>
+			<!-- Si Node.js envoie une liste -->
 			<% if (liste) { %>
+				<!-- Créer une rangée pour chaque document à afficher -->
 				<% for (var i = 0; i < liste.length; i++) { %>
 					<div class="rangee">
 						<p class="case case--nom" contenteditable="true"><%= liste[i].nom %></p>
@@ -33,6 +39,7 @@
 					</div>
 				<% } %>
 			<% } %>
+			<!-- Rangée servant à ajouter un nouveau document -->
 			<div class="rangee rangee--ajout">
 				<p class="case rangee--ajout__case case--nom case--nom--nouveau" contenteditable="true">Nom</p>
 				<p class="case rangee--ajout__case case--prenom case--prenom--nouveau" contenteditable="true">Prénom</p>
@@ -42,6 +49,7 @@
 				<p class="case rangee--ajout__case case--vide"></p>
 			</div>
 		</div>
+		<!-- Rangée cachée servant de gabarit pour l'ajout de nouvelles rangées. Elle est cachée par le CSS. -->
 		<div class="rangee cachee">
 			<p class="case case--nom" contenteditable="true"></p>
 			<p class="case case--prenom" contenteditable="true"></p>

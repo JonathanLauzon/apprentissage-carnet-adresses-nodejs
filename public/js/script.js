@@ -1,9 +1,15 @@
-// Déclaration des variables d'objets du DOM
+/***************************************
+DÉCLARATION DE VARIABLES D'OBJETS DU DOM
+***************************************/
+
 var lesBtnModifier = document.querySelectorAll('.case--modifier');
 var lesBtnSupprimer = document.querySelectorAll('.case--supprimer');
 
 
-// Déclaration des écouteurs d'événements
+
+/*********************
+ÉCOUTEURS D'ÉVÉNEMENTS
+*********************/
 
 document.querySelector('.case--ajouter').addEventListener('click', function(element) {
 	var ligne = element.target.parentNode.children;
@@ -25,9 +31,12 @@ for (var i = 0; i < lesBtnSupprimer.length; i++) {
 }
 
 
+
 /********
 FONCTIONS
 ********/
+
+// Fonctions de requêtes AJAX
 
 function ajouterLigne(laLigne) {
 	xhr = new XMLHttpRequest();
@@ -73,7 +82,7 @@ function supprimerLigne(laLigne) {
 }
 
 
-// Réception de requêtes AJAX
+// Réception de requêtes AJAX (fonction de routage vers les fonctions de traitement de données ci-dessous)
 
 function traiterRequete(e) {
 	console.log("xhr.readyState = " + xhr.readyState);
@@ -98,6 +107,7 @@ function traiterRequete(e) {
 		}
 	}
 }
+
 
 // Application des requêtes AJAX envoyées par la fonction de routage traiterRequete
 
@@ -129,6 +139,7 @@ function traiterSuppression(leId) {
 	console.log(leId);
 	if(chercherRangee(leId)) chercherRangee(leId).remove();
 }
+
 
 // Fonctions d'assistance
 
